@@ -4,6 +4,10 @@ import { FilterMatchMode } from 'primevue/api'
 
 import { usePermission } from '../hooks/usePermission'
 import { usePermissionStore } from '../context/usePermissionStore'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+import 'primevue/resources/themes/lara-dark-teal/theme.css'
+import 'primeflex/primeflex.css'
 
 const permissionStore = usePermissionStore()
 const { savePermission } = usePermission()

@@ -13,10 +13,6 @@ import PrimeVue from 'primevue/config'
 import Skeleton from 'primevue/skeleton'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
-import 'primevue/resources/primevue.min.css'
-import 'primeicons/primeicons.css'
-import 'primevue/resources/themes/lara-dark-teal/theme.css'
-import 'primeflex/primeflex.css'
 
 const pinia = createPinia()
 pinia.use(createPersistedState())
