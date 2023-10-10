@@ -9,7 +9,6 @@ export const usePermission = () => {
     setLoading(true)
 
     try {
-      // FIXME: Permisos mutados al momento de guardar
       setPermission(permission)
       toast.add({
         severity: 'success',
