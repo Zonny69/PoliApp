@@ -1,16 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
 ---
 
 <Layout title="PoliApp">
   <main>
     <h1>Poli<span class="text-gradient">App</span></h1>
     <p class="instructions">
-      To get started, open the directory <code>src/pages</code> in your project.<br
-      />
-      <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message
-      above.
+      Esta app le permitirá solicitar su día <code>compensatorio.</code><br />
+      <strong>A tener en cuenta:</strong> Todas las solicitudes están sujetas a
+      aprobación por parte de Talento Humano.
     </p>
+
+    <ul role="list" class="link-card-grid">
+      <Card
+        href="/register"
+        title="Solicitudes"
+        body="Aquí podrás realizar la solicitud por motivo de Cumpleaños o Jurado de Votación."
+      />
+    </ul>
   </main>
 </Layout>
 
