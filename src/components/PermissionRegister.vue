@@ -6,7 +6,7 @@ import { useField, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as zod from 'zod'
 
-import { usePermission, useResetStore } from '../hooks/'
+import { usePermission, useResetStore, useToasts } from '../hooks/'
 import { usePermissionStore } from '../context/usePermissionStore'
 
 onMounted(() => {
@@ -19,6 +19,7 @@ onActivated(() => {
 
 const permissionStore = usePermissionStore()
 const resetStore = useResetStore()
+const { toastMsg } = useToasts()
 const { savePermission } = usePermission()
 
 const filters = ref({
@@ -68,12 +69,48 @@ const setInitialState = () => {
 const isEmptyObject = value =>
   Object.keys(value).length === 0 && value.constructor === Object
 
+const isEmptyArray = value => value?.length === 0
+
+const isValidRequest = request => {
+  if (isEmptyArray(permissions.value)) return true
+
+  const employee = permissions.value.filter(
+    permission => permission.document === request.document
+  )
+
+  if (employee.length >= 2) {
+    toastMsg({
+      type: 'warn',
+      title: 'Ya haz realizado el máximo de solicitudes posibles',
+    })
+
+    return false
+  }
+
+  const isValid = permissions.value.some(
+    permission =>
+      permission.document !== request.document ||
+      (permission.reason !== request.reason && permission.date !== request.date)
+  )
+
+  if (!isValid) {
+    toastMsg({
+      type: 'error',
+      title: 'Ya dispone de una solicitud por ése motivo o para ése día.',
+    })
+
+    return false
+  }
+
+  return true
+}
+
 const handleSave = handleSubmit(data => {
-  // TODO: Validar registros repetidos y días ya solicitados.
   const request = { ...data, date: new Date(data.date).toLocaleDateString() }
 
-  savePermission(request)
+  if (!isValidRequest(request)) return
 
+  savePermission(request)
   handleReset()
   setInitialState()
 })

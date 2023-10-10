@@ -1,8 +1,8 @@
-import { useToast } from 'primevue/usetoast'
+import { useToasts } from './'
 import { usePermissionStore } from '../context/usePermissionStore'
 
 export const usePermission = () => {
-  const toast = useToast()
+  const { toastMsg } = useToasts()
   const { setPermission, setLoading } = usePermissionStore()
 
   const savePermission = permission => {
@@ -10,19 +10,13 @@ export const usePermission = () => {
 
     try {
       setPermission(permission)
-      toast.add({
-        severity: 'success',
-        summary: 'Guardado con éxito',
-        life: 3000,
-      })
+      toastMsg({ title: 'Guardado con éxito' })
     } catch (err) {
-      toast.add({
-        severity: 'error',
-        summary: 'Ups..',
-        detail: 'Hubo un error al guardar la solicitud',
-        life: 3000,
+      toastMsg({
+        type: 'error',
+        title: 'Ups..',
+        message: 'Hubo un error al guardar la solicitud',
       })
-      toastMsg({ tipo: 'error', titulo: 'Ups!', mensaje: useErrors(err) })
     } finally {
       setLoading(false)
     }
