@@ -1,5 +1,8 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+import 'primevue/resources/themes/lara-dark-teal/theme.css'
+import 'primeflex/primeflex.css'
 interface Props {
   title: string
 }
@@ -16,7 +19,6 @@ const { title } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body>
     <slot />
