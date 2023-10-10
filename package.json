@@ -11,12 +11,15 @@
   },
   "dependencies": {
     "@astrojs/vue": "^3.0.1",
+    "@vee-validate/zod": "^4.11.8",
     "astro": "^3.2.3",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.35.0",
-    "vue": "^3.2.30"
+    "vee-validate": "^4.11.8",
+    "vue": "^3.2.30",
+    "zod": "^3.22.4"
   }
 }
